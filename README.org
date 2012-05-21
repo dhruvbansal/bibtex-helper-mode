@@ -1,0 +1,65 @@
+
+* What is BibTeX Entry Mode?
+
+I've long relied on a simple (though now quite huge) BibTeX file to
+organize my collection of books and papers.
+
+When I add an entry to this file I'll do it in Emacs.  Often I can
+copy and paste a BibTeX entry if one is provided when I download the
+document corresponding to the entry.
+
+Most of the time, however, a BibTeX entry isn't provided or, if it is,
+it isn't of the quality I demand in my database.  So I wind up
+manually inserting a lot of the information myself.
+
+I wrote BibTeX entry mode to make this as easy as possible for me.
+
+* Installation
+
+TBD.
+
+* Usage
+
+=bibtex-entry-mode= is complementary to =bibtex-mode= so the first
+step is to open a =.bib= file in =bibtex-mode=.
+
+Either start a new entry using =bibtex-mode='s provided
+=bibtex-Article=-type helper methods or move point to an existing
+entry.
+
+Now invoke the command =bibtex-entry-mode-for-file=.  You'll be
+prompted for a file on disk to open in =bibtex-entry-mode=.
+
+You may want to add the following snippet somewhere in your =~/.emacs=
+file to bind this function to a key:
+
+#+BEGIN_SRC emacs-lisp
+  (define-key bibtex-mode-map "\C-c\C-e" 'bibtex/dhruv-ready-source-for-filing)
+#+END_SRC
+
+The file will be rendered to text in a temporary Emacs buffer.  and
+you'll have all the real details of authors' names, title,
+&c. available to you, exactly as they are in the original source.
+
+You can now use commands defined by =bibtex-entry-mode= to enter
+information from this buffer directly into the BibTeX entry.  =C-c
+C-a=, for example, is bound to =bibtex-entry-mode-set-author=.
+Invoking this command will prompt you for a string containing the
+authors' names.
+
+1) If you had a region selected when you invoked the command, then the
+   content of the region will be the default choice.
+   
+2) If no region was selected, then the content of the word at point
+   will be the default choice.
+
+Similar commands exist for other common fields in BibTeX entries like
+title, month, year, volume, number, pages, &c.
+
+** Journal Abbreviations
+
+TBD.
+
+*** Journal Abbreviation Resources on the Web
+
+TBD.
